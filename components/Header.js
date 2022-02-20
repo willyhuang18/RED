@@ -13,11 +13,11 @@ import { HomeIcon } from "@heroicons/react/solid"
 
 function Header(){
     return(
-        <div>
+        <div className="shadow-sm ">
         {/* left*/}
             <div className="flex justify-between max-w-6xl mx-5 xl:mx-auto ">
                 <div className="relative hidden lg:inline-grid h-20 w-20 mt-2">
-                    <Image src='https://upload.wikimedia.org/wikipedia/commons/c/c1/XiaohongshuLOGO.png'
+                    <Image src='https://viceclicks.com/wp-content/uploads/2020/04/pasted-image-0-3.png'
                         layout="fill" alt="" objectFit="contain"
                     />
                 </div>
@@ -41,7 +41,12 @@ function Header(){
                 <div className="flex item-center justify-end space-x-4 mt-3">
                     <HomeIcon className="navBtn" />
                     <MenuIcon className="h-6 md:hidden cursor-pointer" />
+                    <div className="relative navBtn">
                     <MapIcon className="navBtn" />
+                    <div className="absolute -top-1 -right-3 text-xs w-5 
+                    bg-red-500 rounded-full flex items-center justify-center
+                    animate-pulse text-white">10</div>
+                    </div>
                     <PlusCircleIcon className="navBtn" />
                     <UserGroupIcon className="navBtn" />
                     <HeartIcon className="navBtn" />
