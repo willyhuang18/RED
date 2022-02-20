@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import{
     SearchIcon,
@@ -41,6 +42,14 @@ function Header(){
                     <HomeIcon className="navBtn" />
                     <MenuIcon className="h-6 md:hidden cursor-pointer" />
                     <MapIcon className="navBtn" />
+                    <PlusCircleIcon className="navBtn" />
+                    <UserGroupIcon className="navBtn" />
+                    <HeartIcon className="navBtn" />
+
+                    <img src='https://upload.wikimedia.org/wikipedia/commons/4/45/Jackson_Wang_at_a_mini_fanmeeting_outside_%22Show%21_Music_Core%22_studios%2C_1_June_2019_02.jpg'
+                    alt="" 
+                    className="  h-10 rounded-full cursor-pointer"
+                    />
                 </div>
                 
             </div> 
