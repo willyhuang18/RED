@@ -38,6 +38,7 @@ function Post({id, username, userImg, img, caption}){
             mr-4 py-2 px-4 rounded-full border-0 text-sm font-semi-bold
             bg-violet-50 text-violet-700 hover:bg-violet-100" 
             placeholder="Any Comment..." type="text" name="search"/>
+            <button className="font-semibold text-blue-400">Post</button>
             </form>
             <div className="flex space-x-4">
                 <HeartIcon className="btn" />
@@ -45,11 +46,8 @@ function Post({id, username, userImg, img, caption}){
                 <ChatIcon className="btn"/>
             </div>
         </div>
-        {/* caption */}
         
         {/* comments */}
-
-        {/* input box */}
         </div>
     )
 }
