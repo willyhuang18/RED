@@ -18,7 +18,7 @@ function Feed(){
             </section>
 
             <section className="hidden xl:inline-grid md:col-span-1 ">
-                <div>
+                <div className="fixed top-20" >
                 {/* mini profile */}
                 <MiniProfile />
                 {/* suggestions */}
