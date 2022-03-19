@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { 
     StarIcon,
-    ChatAltIcon,
     HeartIcon,
     ShareIcon,
     DotsHorizontalIcon,
+    EmojiHappyIcon,
+    ChatIcon,
+    PencilAltIcon,
  } from "@heroicons/react/outline"
 function Post({id, username, userImg, img, caption}){
     return (
@@ -22,41 +24,29 @@ function Post({id, username, userImg, img, caption}){
             </div>
         {/* img */}
         <div className="overflow-scroll overflow-x-hidden max-h-[1000px]  ">
-        <img src={img} className="object-cover w-full" alt="" />
-            <p>this is text</p>
-            <p>this is text</p>
-            <p>this is text</p>
-            <p>this is text</p>
-            <p>this is text</p>
-            <p>this is text</p>
-            <p>this is text</p>
-
-
+            <img src={img} className="object-cover w-full" alt="" />
+            <p className="p-5 truncate">
+            <span className="font-bold mr-1">{username}</span>
+            {caption}
+            </p>
         </div>
         {/* buttons  */}
-        <div className="flex justify-between px-4 pt-4">
-            <label className="relative block">
-            <span className="sr-only">Search</span>
-            <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                <svg className="h-5 w-5 fill-slate-300" viewBox="0 0 20 20"></svg>
-            </span>
+        <div className="flex justify-between px-4 pt-4 mb-5">
+            <form className="flex items-center">
+            <PencilAltIcon className="h-7"/>
             <input className="italic text-slate-400 block w-full text-sm text-slate-500
             mr-4 py-2 px-4 rounded-full border-0 text-sm font-semi-bold
             bg-violet-50 text-violet-700 hover:bg-violet-100" 
             placeholder="Any Comment..." type="text" name="search"/>
-            </label>
+            </form>
             <div className="flex space-x-4">
                 <HeartIcon className="btn" />
                 <StarIcon className="btn"/>
-                <ChatAltIcon className="btn"/>
+                <ChatIcon className="btn"/>
             </div>
-            
         </div>
         {/* caption */}
-        <p className="p-5 truncate">
-        <span className="">{username}</span>
-        {caption}
-        </p>
+        
         {/* comments */}
 
         {/* input box */}
