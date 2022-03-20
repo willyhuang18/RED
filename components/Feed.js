@@ -12,6 +12,7 @@ function Feed(){
             <section className="col-span-2">
             {/* stories */}
             <Stories />
+                <Suggestions />
             {/* posts */}
             <Posts />
             
@@ -22,7 +23,6 @@ function Feed(){
                 {/* mini profile */}
                 <MiniProfile />
                 {/* suggestions */}
-                <Suggestions />
                 </div>
             </section>
         </main>
