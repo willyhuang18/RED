@@ -1,6 +1,7 @@
 import { useRecoilState } from "recoil"
 import { modalState } from "../atoms/modalAtom"
 import { Dialog, Transition } from '@headlessui/react';
+import { CameraIcon } from '@heroicons/react/outline'
 import { Fragment } from "react";
 
 function Modal() {
@@ -9,7 +10,7 @@ function Modal() {
   return (
     <Transition.Root show={open} as={Fragment} >
         <Dialog as="div"
-        className='fixed z-10 inset-= overflow-y-auto'
+        className='fixed z-10 inset-0 overflow-y-auto'
         onClose={setOpen}
         >
             <div className="flex items-end justify-center min-h-[800px] 
@@ -44,6 +45,14 @@ function Modal() {
                     sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
                     > 
                         <div>
+                            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 
+                            cursor-pointer"
+                            >
+                            <CameraIcon className="h-6 w-6 text-red-600"
+                            aria-hidden="true" 
+                                
+                            />    
+                            </div>
                             <div className="mt-3 text-center sm:mt-5">
                                 <Dialog.Title 
                                 as="h3"
@@ -51,6 +60,7 @@ function Modal() {
                                 >
                                     Upload a Photo
                                 </Dialog.Title>
+                                
                                 <div>
                                     <input 
                                     type="file"
@@ -71,7 +81,7 @@ function Modal() {
                                 focus:  focus:ring-offset-2 focus:ring-red-500 sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed
                                 hover:disabled:bg-gray-300"
                                 >
-
+                                Upload Post
                                 </button>
                             </div>
                         </div>
