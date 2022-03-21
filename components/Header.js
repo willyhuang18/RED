@@ -5,13 +5,16 @@ import{
     PlusCircleIcon,
     UserGroupIcon,
     HeartIcon,
-    PaperAirplaneIcon,
     MenuIcon,
     MapIcon,
 } from "@heroicons/react/outline"
 import { HomeIcon } from "@heroicons/react/solid"
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Header(){
+    const { data: session } = useSession();
+
+    console.log(session);
     return(
         <div className="shadow-sm ">
         {/* left*/}
@@ -41,20 +44,28 @@ function Header(){
                 <div className="flex item-center justify-end space-x-4 mt-3">
                     <HomeIcon className="navBtn" />
                     <MenuIcon className="h-6 md:hidden cursor-pointer" />
-                    <div className="relative navBtn">
-                    <MapIcon className="navBtn" />
-                    <div className="absolute -top-1 -right-3 text-xs w-5 
-                    bg-red-500 rounded-full flex items-center justify-center
-                    animate-pulse text-white">10</div>
-                    </div>
-                    <PlusCircleIcon className="navBtn" />
-                    <UserGroupIcon className="navBtn" />
-                    <HeartIcon className="navBtn" />
+                    {session ? (
+                    <>
+                        <div className="relative navBtn">
+                        <MapIcon className="navBtn" />
+                        <div className="absolute -top-1 -right-3 text-xs w-5 
+                        bg-red-500 rounded-full flex items-center justify-center
+                        animate-pulse text-white">10</div>
+                        </div>
+                        <PlusCircleIcon className="navBtn" />
+                        <UserGroupIcon className="navBtn" />
+                        <HeartIcon className="navBtn" />
 
-                    <img src='https://upload.wikimedia.org/wikipedia/commons/4/45/Jackson_Wang_at_a_mini_fanmeeting_outside_%22Show%21_Music_Core%22_studios%2C_1_June_2019_02.jpg'
-                    alt="" 
-                    className="  h-10 rounded-full cursor-pointer"
-                    />
+                        <img 
+                        onClick={signOut}
+                        src={session.user.image}
+                        alt="" 
+                        className="h-10 rounded-full cursor-pointer"
+                        />
+                    </>
+                    ):(
+                        <button onClick={signIn}>Sign In </button>
+                    )}
                 </div>
                 
             </div> 
