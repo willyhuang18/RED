@@ -10,7 +10,13 @@ function Modal() {
     const [selectedFile, setSelectedFile] = useState(null);
 
     const addImageToPost =(e) => {
-        
+        const reader = new FileReader();
+        if(e.target.file[0]){
+            reader.readAsDataURL(e.target.file[0]);
+        }
+        reader.onload = (readerEvent) =>{
+            setSelectedFile(readerEvent.target.result);
+        };
     }
 
   return (
@@ -54,6 +60,7 @@ function Modal() {
                             <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 
                             cursor-pointer"
                             // when the icon is clicked, it will execute the fake click the filePicker in the input element below upload photo
+                            // to look for the pic in your local computer
                             onClick={() => filePickerRef.current.click()}
                             >
                             <CameraIcon className="h-6 w-6 text-red-600"
