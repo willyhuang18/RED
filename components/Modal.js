@@ -7,7 +7,11 @@ import { Fragment, useRef, useState } from "react";
 function Modal() {
     const [open, setOpen] = useRecoilState(modalState);
     const filePickerRef = useRef();
-   
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const addImageToPost =(e) => {
+        
+    }
 
   return (
     <Transition.Root show={open} as={Fragment} >
@@ -49,6 +53,8 @@ function Modal() {
                         <div>
                             <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 
                             cursor-pointer"
+                            // when the icon is clicked, it will execute the fake click the filePicker in the input element below upload photo
+                            onClick={() => filePickerRef.current.click()}
                             >
                             <CameraIcon className="h-6 w-6 text-red-600"
                             aria-hidden="true" 
@@ -68,7 +74,7 @@ function Modal() {
                                     ref={filePickerRef}
                                     type="file"
                                     hidden 
-                                    // onChange={addImageToPost}
+                                    onChange={addImageToPost}
                                     />
                                 </div>
                                 <div className="mt-2">
