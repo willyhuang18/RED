@@ -57,7 +57,7 @@ function Header(){
                         bg-red-500 rounded-full flex items-center justify-center
                         animate-pulse text-white">10</div>
                         </div>
-                        <PlusCircleIcon className="navBtn" />
+                        <PlusCircleIcon onClick={() => setOpen(true)} className="navBtn" />
                         <UserGroupIcon className="navBtn" />
                         <HeartIcon className="navBtn" />
 
