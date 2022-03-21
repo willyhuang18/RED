@@ -10,21 +10,23 @@ import{
 } from "@heroicons/react/outline"
 import { HomeIcon } from "@heroicons/react/solid"
 import { signIn, signOut, useSession } from "next-auth/react";
+import {useRouter} from 'next/router';
 
 function Header(){
     const { data: session } = useSession();
+    const router = useRouter();
 
     console.log(session);
     return(
         <div className="shadow-sm ">
         {/* left*/}
             <div className="flex justify-between max-w-6xl mx-5 xl:mx-auto ">
-                <div className="relative hidden lg:inline-grid h-20 w-20 mt-2">
+                <div onClick={() => router.push('/')} className="relative hidden lg:inline-grid h-20 w-20 mt-2 cursor-pointer">
                     <Image src='https://viceclicks.com/wp-content/uploads/2020/04/pasted-image-0-3.png'
                         layout="fill" alt="" objectFit="contain"
                     />
                 </div>
-                <div className="relative w-10 h-15 lg:hidden flex-shrink-lg cursor-pointer">
+                <div onClick={() => router.push('/')} className="relative w-10 h-15 lg:hidden flex-shrink-lg cursor-pointer">
                     <Image src='https://gsrventuresglobal.com/wp-content/uploads/2020/04/xiaohongshu-C.png'
                         layout="fill" alt="" objectFit="contain"
                     />
@@ -42,7 +44,7 @@ function Header(){
                 </div>
                 {/* right */}
                 <div className="flex items-center justify-end space-x-4 mt-3">
-                    <HomeIcon className="navBtn" />
+                    <HomeIcon onClick={() => router.push('/')} className="navBtn" />
                     <MenuIcon className="h-6 md:hidden cursor-pointer" />
                     {session ? (
                     <>
