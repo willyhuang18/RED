@@ -30,7 +30,7 @@ function Header(){
                     />
                 </div>
                 {/* Middle */}
-                <div className="max-w-xs">
+                <div className="max-w-xs flex items-center ">
                     <div className="relative mt-1 p-3 rounder-md">
                         <div className="absolute inset-y-0 pl-3 flex items-center
                         pointer-events-none">
@@ -41,7 +41,7 @@ function Header(){
                     </div>
                 </div>
                 {/* right */}
-                <div className="flex item-center justify-end space-x-4 mt-3">
+                <div className="flex items-center justify-end space-x-4 mt-3">
                     <HomeIcon className="navBtn" />
                     <MenuIcon className="h-6 md:hidden cursor-pointer" />
                     {session ? (
