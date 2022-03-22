@@ -9,9 +9,12 @@ import {
     PencilAltIcon,
  } from "@heroicons/react/outline"
 import { useSession } from "next-auth/react";
+import { useState } from 'react';
 
 function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
+    const [comment, setComment]= useState("");
+    const [comments, setComments]= useState([]);
 
     return (
         <div className="bg-white my-7 border rounded-sm ">
