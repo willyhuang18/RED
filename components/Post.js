@@ -19,7 +19,7 @@ function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
     const [comment, setComment]= useState("");
     const [comments, setComments]= useState([]);
-    const [likes, setLikes] = useState(0);
+    const [likes, setLikes] = useState([]);
     const [hasLiked, setHasLiked] = useState(false);
 
     useEffect(
@@ -43,15 +43,17 @@ function Post({id, username, userImg, img, caption}){
         [db, id]
     );
 
-    useEffect(()=>
-        setHasLiked(likes.findIndex((like) => (like.id === session?.user?.uid)!== -1) 
+    useEffect(
+        () =>
+        setHasLiked(
+            likes.findIndex((like) => (like.id === session?.user?.uid)) !== -1
         ),
     [likes]
     );
 
     const likePost = async () => {
         if(hasLiked){
-            await deleteDoc(doc(db, 'posts', id, 'likes', session.user.id));
+            await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid));
         }else{
             await setDoc(doc(db, 'posts', id, 'likes', session.user.uid),{
                 username: session.user.username,
@@ -72,7 +74,7 @@ function Post({id, username, userImg, img, caption}){
             timestamp: serverTimestamp(),
         })
     }
-
+    console.log(hasLiked);
     return (
         <div className="bg-white my-7 border rounded-sm ">
         {/* header */}
