@@ -4,11 +4,30 @@ import { modalState } from "../atoms/modalAtom"
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/outline'
 import { Fragment, useRef, useState } from "react";
+import {db, storage} from '../firebase'
+import { collection, serverTimestamp } from "firebase/firestore";
+import { useSession } from "next-auth/react";
 
 function Modal() {
+    const {data: session } = useSession();
     const [open, setOpen] = useRecoilState(modalState);
-    const filePickerRef = useRef();
+    const filePickerRef = useRef(null);
+    const captionRef = useRef(null);
+    const [loading, setLoading] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
+
+    const uploadPost = async () => {
+        if(loading)return;
+
+        setLoading(true);
+        //create a post and add to firestore 'post' collection 
+        //get the post ID for the newly created post
+        // upload the image to firebase storage with the post ID
+        //get a download url from firebase storage and update the original post with image
+
+
+
+    }
 
     const addImageToPost =(e) => {
         const reader = new FileReader();
@@ -95,6 +114,7 @@ function Modal() {
                                 <input
                                 className="border-none focus:ring-0 w-full text-center" 
                                 type="text"
+                                ref={captionRef}
                                 placeholder="Please enter the info about this post"
                                 />
                                 </div>
