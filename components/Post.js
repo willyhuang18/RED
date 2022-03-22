@@ -8,6 +8,7 @@ import {
     ChatIcon,
     PencilAltIcon,
  } from "@heroicons/react/outline"
+ import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid'
 import { useSession } from "next-auth/react";
 import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
@@ -138,7 +139,13 @@ function Post({id, username, userImg, img, caption}){
             >Post</button>
             </form>
             <div className="flex space-x-4">
+            {
+                hasLiked ? (
+                    <HeartIconFilled onClick={likePost} className="btn text-red-500"/>
+                ) : (
                 <HeartIcon onClick={likePost} className="btn" />
+                )
+            }
                 <StarIcon className="btn"/>
                 <ChatIcon className="btn"/>
             </div>
