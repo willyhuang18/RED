@@ -9,15 +9,27 @@ import {
     PencilAltIcon,
  } from "@heroicons/react/outline"
 import { useSession } from "next-auth/react";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
-import { addDoc, collection, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from "firebase/firestore";
 
 
 function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
     const [comment, setComment]= useState("");
     const [comments, setComments]= useState([]);
+
+    useEffect(
+        () => 
+            onSnapshot(
+                query(
+                    collection(db, 'post', id, 'comments'),
+                    orderBy('timestamp', 'desc')
+                    ),
+                snapshot => setComments(snapshot.docs)
+            ),
+        [db]
+    )
 
     const sendComment = async (e) => {
         e.preventDefault();
