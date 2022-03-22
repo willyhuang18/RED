@@ -8,7 +8,11 @@ import {
     ChatIcon,
     PencilAltIcon,
  } from "@heroicons/react/outline"
+import { useSession } from "next-auth/react";
+
 function Post({id, username, userImg, img, caption}){
+    const { data: session } = useSession();
+
     return (
         <div className="bg-white my-7 border rounded-sm ">
         {/* header */}
@@ -31,12 +35,13 @@ function Post({id, username, userImg, img, caption}){
             </p>
         </div>
         {/* buttons  */}
+        {session && (
         <div className="flex justify-between px-4 pt-4 mb-5">
             <form className="flex items-center">
             <PencilAltIcon className="h-7"/>
-            <input className="italic text-slate-400 block w-full text-sm text-slate-500
-            mr-4 py-2 px-4 rounded-full border-0 text-sm font-semi-bold
-            bg-violet-50 text-violet-700 hover:bg-violet-100" 
+            <input className="italic  block w-full text-sm text-black-500
+            mr-4 py-2 px-4 rounded-full border-0  font-semi-bold
+            bg-violet-50  hover:bg-violet-100" 
             placeholder="Any Comment..." type="text" name="search"/>
             <button className="font-semibold text-blue-400">Post</button>
             </form>
@@ -46,6 +51,8 @@ function Post({id, username, userImg, img, caption}){
                 <ChatIcon className="btn"/>
             </div>
         </div>
+
+        )}
         
         {/* comments */}
         </div>
