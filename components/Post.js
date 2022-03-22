@@ -45,8 +45,17 @@ function Post({id, username, userImg, img, caption}){
             <input className="italic  block w-full text-sm text-black-500
             mr-4 py-2 px-4 rounded-full border-0  font-semi-bold
             bg-violet-50  hover:bg-violet-100" 
-            placeholder="Any Comment..." type="text" name="search"/>
-            <button className="font-semibold text-blue-400">Post</button>
+            placeholder="Any Comment..." 
+            type="text" 
+            value={comment}
+            onChange={ e =>  setComment(e.target.value)}
+            />
+            <button 
+            className="font-semibold text-blue-400"
+            type="submit"
+            disabled={!comment.trim()}
+            onClick={sendComment}
+            >Post</button>
             </form>
             <div className="flex space-x-4">
                 <HeartIcon className="btn" />
