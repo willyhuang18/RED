@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import {db, storage} from '../firebase'
+import {onSnapshot, collection, query, orderBy} from 'firebase/firestore';
 import Post from "./Post"
 
 const posts = [
@@ -22,7 +24,10 @@ function Posts(){
     const [posts, setPosts] = useState([])
 
     useEffect (() => {
-
+        onSnapshot(query(collection(db, 'posts'), orderBy("timestamp", 'desc')), snapshot =>{
+            setPosts(snapshot.docs);
+        });
+        
     }, [])
     return (
         <div >
