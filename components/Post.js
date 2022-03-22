@@ -97,6 +97,15 @@ function Post({id, username, userImg, img, caption}){
         )}
         
         {/* comments */}
+        {comments.length > 0 && (
+            <div className="ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+               {comments.map(comment => (
+                   <div key={comment.id}>
+                   <img src={comment.data().image} alt="" />
+                   </div>
+               ))} 
+            </div>
+        )}
         </div>
     )
 }
