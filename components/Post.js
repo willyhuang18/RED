@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
-import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 
 
 function Post({id, username, userImg, img, caption}){
@@ -43,15 +43,20 @@ function Post({id, username, userImg, img, caption}){
         [db, id]
     );
 
-    useEffect(()=>{
+    useEffect(()=>
         setHasLiked(likes.findIndex((like) => (like.id === session?.user?.uid)!== -1) 
-        )
-    },[likes])
+        ),
+    [likes]
+    );
 
     const likePost = async () => {
-        await setDoc(doc(db, 'posts', id, 'likes', session.user.uid),{
-            username: session.user.username,
-        })
+        if(hasLiked){
+            await deleteDoc(doc(db, 'posts', id, 'likes', session.user.id));
+        }else{
+            await setDoc(doc(db, 'posts', id, 'likes', session.user.uid),{
+                username: session.user.username,
+            })
+        }
     }
 
     const sendComment = async (e) => {
