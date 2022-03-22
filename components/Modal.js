@@ -5,8 +5,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/outline'
 import { Fragment, useRef, useState } from "react";
 import {db, storage} from '../firebase'
-import { collection, serverTimestamp } from "firebase/firestore";
+import { collection, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
+import { ref, getDownloadURL, uploadString } from "firebase/storage";
 
 function Modal() {
     const {data: session } = useSession();
@@ -31,7 +32,19 @@ function Modal() {
             profileImg: session.user.image,
             timestamp: serverTimestamp()
         })
+        console.log('ID', docRef.id);
 
+        const imageRef = ref(storage, `posts/${docRef.id}/image`);
+
+        await uploadString(imageRef, selectedFile, 'data_url')
+        .then(async snapshot => {
+            const downloadURL =await getDownloadURL(imageRef);
+
+            await updateDoc(doc(db, 'posts', docRef.id),{
+                image: downloadURL
+            })
+        });
+        
     }
 
     const addImageToPost =(e) => {
