@@ -24,19 +24,19 @@ function Post({id, username, userImg, img, caption}){
         () => 
             onSnapshot(
                 query(
-                    collection(db, 'post', id, 'comments'),
+                    collection(db, 'posts', id, "comments"),
                     orderBy('timestamp', 'desc')
                     ),
-                snapshot => setComments(snapshot.docs)
+                (snapshot) => setComments(snapshot.docs)
             ),
         [db]
-    )
+    );
 
     const sendComment = async (e) => {
         e.preventDefault();
         
         const commentToSend = comment;
-        setComment('');
+        setComment("");
 
         await addDoc(collection(db, 'posts', id, 'comments'),{
             comment:commentToSend,
@@ -61,12 +61,30 @@ function Post({id, username, userImg, img, caption}){
                 </div>
             </div>
         {/* img */}
-        <div className="overflow-scroll overflow-x-hidden max-h-[1000px]  ">
+        <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin ">
             <img src={img} className="object-cover w-full" alt="" />
             <p className="p-5 truncate">
             <span className="font-bold mr-1">{username}</span>
             {caption}
             </p>
+            {comments.length > 0 && (
+            <div className="ml-10 h-20 ">
+               {comments.map((comment) => (
+                   <div key={comment.id} 
+                   className="flex items-center space-x-2 mb-3">
+                   <img 
+                   src={comment.data().userImage} 
+                   alt="" 
+                   className="h-7 rounded-full"
+                   />
+                   <p className="text-sm flex-1"><span className="font-bold">{comment.data().username}
+                   </span> {' '}
+                    {comment.data().comment}
+                    </p>
+                   </div>
+               ))} 
+            </div>
+        )}
         </div>
         {/* buttons  */}
         {session && (
@@ -98,24 +116,7 @@ function Post({id, username, userImg, img, caption}){
         )}
         
         {/* comments */}
-        {comments.length > 0 && (
-            <div className="ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
-               {comments.map((comment) => (
-                   <div key={comment.id} 
-                   className="flex items-center space-x-2 mb-3">
-                   <img 
-                   src={comment.data().userImage} 
-                   alt="" 
-                   className="h-7 rounded-full"
-                   />
-                   <p className="text-sm flex-1"><span className="font-bold">{comment.data().username}
-                   </span> {' '}
-                    {comment.data().comment}
-                    </p>
-                   </div>
-               ))} 
-            </div>
-        )}
+
         </div>
     )
 }
