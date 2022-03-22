@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRecoilState } from "recoil"
 import { modalState } from "../atoms/modalAtom"
 import { Dialog, Transition } from '@headlessui/react';
@@ -11,8 +12,8 @@ function Modal() {
 
     const addImageToPost =(e) => {
         const reader = new FileReader();
-        if(e.target.file[0]){
-            reader.readAsDataURL(e.target.file[0]);
+        if(e.target.files[0]){
+            reader.readAsDataURL(e.target.files[0]);
         }
         reader.onload = (readerEvent) =>{
             setSelectedFile(readerEvent.target.result);
@@ -57,7 +58,13 @@ function Modal() {
                     sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
                     > 
                         <div>
-                            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 
+                        {selectedFile ? (
+                            <img src={selectedFile} 
+                            onClick={()=> setSelectedFile(null)} 
+                            alt=""
+                            />
+                        ):(
+                        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 
                             cursor-pointer"
                             // when the icon is clicked, it will execute the fake click the filePicker in the input element below upload photo
                             // to look for the pic in your local computer
@@ -65,9 +72,9 @@ function Modal() {
                             >
                             <CameraIcon className="h-6 w-6 text-red-600"
                             aria-hidden="true" 
-
                             />    
-                            </div>
+                        </div>
+                        )}
                             <div className="mt-3 text-center sm:mt-5">
                                 <Dialog.Title 
                                 as="h3"
