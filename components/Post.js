@@ -81,6 +81,9 @@ function Post({id, username, userImg, img, caption}){
                    </span> {' '}
                     {comment.data().comment}
                     </p>
+                    <Moment fromNow className="pr-5 text-xs">
+                        {comment.data().timestamp?.toDate()}
+                    </Moment>
                    </div>
                ))} 
             </div>
