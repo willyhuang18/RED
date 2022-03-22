@@ -19,6 +19,7 @@ function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
     const [comment, setComment]= useState("");
     const [comments, setComments]= useState([]);
+    const [likes, setLikes] = useState(0);
 
     useEffect(
         () => 
@@ -31,6 +32,14 @@ function Post({id, username, userImg, img, caption}){
             ),
         [db]
     );
+    
+    useEffect(
+        () =>
+            onSnapshot(
+                collection(db, 'posts', id, 'likes'), 
+                (snapshot) => setLikes(snapshot.docs)
+            )
+        )
 
     const sendComment = async (e) => {
         e.preventDefault();
@@ -46,7 +55,6 @@ function Post({id, username, userImg, img, caption}){
         })
     }
 
-    console.log(comments);
     return (
         <div className="bg-white my-7 border rounded-sm ">
         {/* header */}
