@@ -93,6 +93,7 @@ function Post({id, username, userImg, img, caption}){
         <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin ">
             <img src={img} className="object-cover w-full" alt="" />
             <p className="p-5 truncate">
+            
             <span className="font-bold mr-1">{username}</span>
             {caption}
             </p>
@@ -140,8 +141,11 @@ function Post({id, username, userImg, img, caption}){
             </form>
             <div className="flex space-x-4">
             {
-                hasLiked ? (
+                hasLiked || likes.length > 0 ? (
+                    <>
                     <HeartIconFilled onClick={likePost} className="btn text-red-500"/>
+                    <span className="font-bold">{likes.length}</span>
+                    </>
                 ) : (
                 <HeartIcon onClick={likePost} className="btn" />
                 )
