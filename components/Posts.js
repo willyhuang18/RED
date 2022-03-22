@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Post from "./Post"
 
 const posts = [
@@ -18,6 +19,11 @@ const posts = [
 ];
 
 function Posts(){
+    const [posts, setPosts] = useState([])
+
+    useEffect (() => {
+
+    }, [])
     return (
         <div >
         {posts.map((post) =>(
