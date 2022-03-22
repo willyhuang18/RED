@@ -45,7 +45,7 @@ function Post({id, username, userImg, img, caption}){
         })
     }
 
-
+    console.log(comments);
     return (
         <div className="bg-white my-7 border rounded-sm ">
         {/* header */}
@@ -99,9 +99,18 @@ function Post({id, username, userImg, img, caption}){
         {/* comments */}
         {comments.length > 0 && (
             <div className="ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
-               {comments.map(comment => (
-                   <div key={comment.id}>
-                   <img src={comment.data().image} alt="" />
+               {comments.map((comment) => (
+                   <div key={comment.id} 
+                   className="flex items-center space-x-2 mb-3">
+                   <img 
+                   src={comment.data().userImage} 
+                   alt="" 
+                   className="h-7 rounded-full"
+                   />
+                   <p className="text-sm flex-1"><span className="font-bold">{comment.data().username}
+                   </span> {' '}
+                    {comment.data().comment}
+                    </p>
                    </div>
                ))} 
             </div>
