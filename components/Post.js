@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
-import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 
 
 function Post({id, username, userImg, img, caption}){
@@ -38,8 +38,15 @@ function Post({id, username, userImg, img, caption}){
             onSnapshot(
                 collection(db, 'posts', id, 'likes'), 
                 (snapshot) => setLikes(snapshot.docs)
-            )
-        )
+            ),
+        [db, id]
+    );
+
+    const likePost = async () => {
+        await setDoc(doc(db, 'posts', id, 'likes', session.user.uid),{
+            username: session.user.username,
+        })
+    }
 
     const sendComment = async (e) => {
         e.preventDefault();
@@ -118,7 +125,7 @@ function Post({id, username, userImg, img, caption}){
             >Post</button>
             </form>
             <div className="flex space-x-4">
-                <HeartIcon className="btn" />
+                <HeartIcon onClick={likePost} className="btn" />
                 <StarIcon className="btn"/>
                 <ChatIcon className="btn"/>
             </div>
