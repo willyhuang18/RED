@@ -14,7 +14,7 @@ import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
-import {Collapse} from 'react-collapse';
+import { useCollapse } from 'react-collapse';
 
 function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
@@ -22,6 +22,8 @@ function Post({id, username, userImg, img, caption}){
     const [comments, setComments]= useState([]);
     const [likes, setLikes] = useState([]);
     const [hasLiked, setHasLiked] = useState(false);
+    const [isExpanded, setExpanded] = useState(false)
+    const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded })
 
     useEffect(
         () => 
@@ -77,7 +79,7 @@ function Post({id, username, userImg, img, caption}){
     }
     console.log(hasLiked);
     return (
-        <Collapse>
+        // <Collapse>
         <div className="bg-white my-7 border rounded-lg " >
         {/* header */}
             <div className="flex items-center p-5">
@@ -92,14 +94,17 @@ function Post({id, username, userImg, img, caption}){
             </div>
         {/* img */}
         <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin ">
-            <img src={img} className="object-cover w-full" alt="" onClick={() => setOpen(true)} />
+            <img src={img} className="object-cover w-full" alt="" 
+            {...getToggleProps({
+                onClick: () => setExpanded((prevExpanded) => !prevExpanded),
+            })} />
+            {isExpanded ? 'Collapse' : 'Expand'}
             <p className="p-5 truncate">
-            
             <span className="font-bold mr-1">{username}</span>
             {caption}
             </p>
             {comments.length > 0 && (
-            <div className="ml-10 h-20 ">
+            <div className="ml-10 h-20 " {...getCollapseProps()}>
                {comments.map((comment) => (
                    <div key={comment.id} 
                    className="flex items-center space-x-2 mb-3">
@@ -158,7 +163,7 @@ function Post({id, username, userImg, img, caption}){
 
         )}
         </div>
-    </Collapse>
+    // </Collapse>
     )
 }
 
