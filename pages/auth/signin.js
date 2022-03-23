@@ -9,6 +9,7 @@ function signIn({providers}) {
     <img className="w-80" 
     src='https://viceclicks.com/wp-content/uploads/2020/04/pasted-image-0-3.png' 
     alt=""/>
+    <p className="font-xs italic text-lg mt-5">This is not a real App, not for commerce use. Thank you</p>
       <div className="mt-40">
         {Object.values(providers).map((provider) => (
           <div key={provider.name}>
