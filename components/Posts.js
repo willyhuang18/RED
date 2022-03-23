@@ -19,7 +19,7 @@ function Posts(){
     );
     console.log(posts);
     return (
-        <div >
+        <div className="grid  grid-flow-col gap-4" >
         {posts.map((post) =>(
         <Post 
         key={post.id} 

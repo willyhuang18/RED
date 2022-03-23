@@ -76,10 +76,11 @@ function Post({id, username, userImg, img, caption}){
             timestamp: serverTimestamp(),
         })
     }
+
     console.log(hasLiked);
     return (
         // <Collapse>
-        <div className="bg-white my-7 border rounded-lg " >
+        <div className="bg-white my-7 border rounded-lg max-h-[300px] max-w-[500px]" >
         {/* header */}
             <div className="flex items-center p-5">
                 <img src={userImg} className="rounded-full h-12 w-12 object-contain border p-1 mr-3" alt="" />
@@ -92,7 +93,7 @@ function Post({id, username, userImg, img, caption}){
                 </div>
             </div>
         {/* img */}
-        <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin ">
+        <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin" >
             <img src={img} className="object-cover w-full" alt="" onClick={() => setIsOpened(!isOpened)} />
             <p className="p-5 truncate">
             
