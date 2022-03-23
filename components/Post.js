@@ -14,7 +14,7 @@ import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
-import { useCollapse } from 'react-collapse';
+import { Collapse } from 'react-collapse';
 
 function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
@@ -22,8 +22,7 @@ function Post({id, username, userImg, img, caption}){
     const [comments, setComments]= useState([]);
     const [likes, setLikes] = useState([]);
     const [hasLiked, setHasLiked] = useState(false);
-    const [isExpanded, setExpanded] = useState(false)
-    const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded })
+    const [isOpened, setIsOpened] = useState(false);
 
     useEffect(
         () => 
@@ -94,17 +93,17 @@ function Post({id, username, userImg, img, caption}){
             </div>
         {/* img */}
         <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin ">
-            <img src={img} className="object-cover w-full" alt="" 
-            {...getToggleProps({
-                onClick: () => setExpanded((prevExpanded) => !prevExpanded),
-            })} />
-            {isExpanded ? 'Collapse' : 'Expand'}
+            <img src={img} className="object-cover w-full" alt="" onClick={() => setIsOpened(!isOpened)} />
             <p className="p-5 truncate">
+            
             <span className="font-bold mr-1">{username}</span>
             {caption}
             </p>
+            <Collapse isOpened={isOpened}>
+        {isOpened && (
+            <>
             {comments.length > 0 && (
-            <div className="ml-10 h-20 " {...getCollapseProps()}>
+            <div className="ml-10 h-20 ">
                {comments.map((comment) => (
                    <div key={comment.id} 
                    className="flex items-center space-x-2 mb-3">
@@ -123,7 +122,10 @@ function Post({id, username, userImg, img, caption}){
                    </div>
                ))} 
             </div>
+            )}
+            </>
         )}
+        </Collapse>
         </div>
         {/* buttons  */}
         {session && (
@@ -160,10 +162,8 @@ function Post({id, username, userImg, img, caption}){
                 <ChatIcon className="btn"/>
             </div>
         </div>
-
         )}
         </div>
-    // </Collapse>
     )
 }
 
