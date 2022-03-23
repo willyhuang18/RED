@@ -14,7 +14,7 @@ import { useState,useEffect } from 'react';
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
-
+import {Collapse} from 'react-collapse';
 
 function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
@@ -77,7 +77,8 @@ function Post({id, username, userImg, img, caption}){
     }
     console.log(hasLiked);
     return (
-        <div className="bg-white my-7 border rounded-sm ">
+        <Collapse>
+        <div className="bg-white my-7 border rounded-lg " >
         {/* header */}
             <div className="flex items-center p-5">
                 <img src={userImg} className="rounded-full h-12 w-12 object-contain border p-1 mr-3" alt="" />
@@ -91,7 +92,7 @@ function Post({id, username, userImg, img, caption}){
             </div>
         {/* img */}
         <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin ">
-            <img src={img} className="object-cover w-full" alt="" />
+            <img src={img} className="object-cover w-full" alt="" onClick={() => setOpen(true)} />
             <p className="p-5 truncate">
             
             <span className="font-bold mr-1">{username}</span>
@@ -156,10 +157,8 @@ function Post({id, username, userImg, img, caption}){
         </div>
 
         )}
-        
-        {/* comments */}
-
         </div>
+    </Collapse>
     )
 }
 
