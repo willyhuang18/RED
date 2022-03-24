@@ -4,6 +4,7 @@ import Posts from "./Posts"
 import Stories from "./Stories"
 import Suggestions from "./Suggestions"
 import { useSession } from 'next-auth/react'
+import ProfileInfo from "./ProfileInfo"
 
 function Feed(){
     const { data: session } = useSession();
@@ -15,7 +16,7 @@ function Feed(){
             <section className="col-span-2">
             {/* stories */}
             <Stories />
-                <Suggestions />
+            <Suggestions />
             {/* posts */}
             <Posts />
             </section>
@@ -25,7 +26,7 @@ function Feed(){
                 <div className="fixed top-20" >
                 {/* mini profile */}
                 <MiniProfile />
-                {/* suggestions */}
+                <ProfileInfo />
                 </div>
             </section>
             )}
