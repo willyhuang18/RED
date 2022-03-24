@@ -1,4 +1,5 @@
 # RED 2.0
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 Nowadays,  young adult are obsession with social media. They would've look at their phone when they have time, even just a little. This APP's concept come from an Chinese app called 'RED' or 'xiaohongshu' , similar to instagram. Making this app to enhance my coding skill, this app not for commerce use <br />
@@ -13,7 +14,6 @@ Users will have access to their google account, which can able to login with the
 * [Technology Stack](#technology-stack)
 * [Code Snippets](#code-snippets)
 * [Authors](#authors)
-* [License](#license)
 
 ## Demo and Site Link
 * [RED 2.0 - Live Site](https://red-eight.vercel.app/)
@@ -50,8 +50,3 @@ Technologies
 
 * [Pangta's GitHub](https://github.com/willyhuang18)
 * [Pangta's LinkedIn](https://www.linkedin.com/in/pangta-huang-2b7b0117a/)
-
-## License
-MIT License <br/>
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br/>
-Copyright (c) 2022 Pangta Huang, Joshua Meza, Elliot Park, Leslie Patino
