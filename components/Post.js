@@ -4,10 +4,10 @@ import {
     HeartIcon,
     ShareIcon,
     DotsHorizontalIcon,
-    EmojiHappyIcon,
     ChatIcon,
     PencilAltIcon,
  } from "@heroicons/react/outline"
+ import { BsBoxArrowUpRight } from "react-icons/bs";
  import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid'
 import { useSession } from "next-auth/react";
 import { useState,useEffect } from 'react';
@@ -88,8 +88,8 @@ function Post({id, username, userImg, img, caption}){
                 <div className="flex space-x-4">
                 <p className="bg-blue-500 hover:bg-blue-700 text-white 
                 font-bold py-1 px-2 rounded-full">Follow</p>
-                <DotsHorizontalIcon className="h-5 mt-2" />
-                <ShareIcon className="h-5 mt-2"/>
+                <DotsHorizontalIcon className="h-5 mt-2 cursor-pointer" />
+                <BsBoxArrowUpRight className="h-5 mt-2 w-5 cursor-pointer "/>
                 </div>
             </div>
         {/* img */}
