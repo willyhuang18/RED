@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# RED 2.0
 
-## Getting Started
+## Description
+Nowadays,  young adult are obsession with social media. They would've look at their phone when they have time, even just a little. This APP's concept come from an Chinese app called 'RED' or 'xiaohongshu' , similar to instagram. Making this app to enhance my coding skill, this app not for commerce use <br />
 
-First, run the development server:
+Users will have access to their google account, which can able to login with their google account, users can able to see others posts and likes someone's post. Users only able to comment the post when they are login. Users also can able to upload their post with the captions.
 
-```bash
-npm run dev
-# or
-yarn dev
+
+## Table of Contents
+* [Description](#description)
+* [Demo and Site Link](#demo)
+* [Installation](#installation)
+* [Technology Stack](#technology-stack)
+* [Code Snippets](#code-snippets)
+* [Authors](#authors)
+* [License](#license)
+
+## Demo and Site Link
+* [RED 2.0 - Live Site](https://red-eight.vercel.app/)
+* [RED2.0 - Repo](https://github.com/willyhuang18/red)
+
+![image](https://user-images.githubusercontent.com/87446864/159825435-230124a4-d664-4937-aec2-1c9d7cde7872.png)
+
+
+
+## Installation
+To run this application, there are many packages that must be installed. Once you are in the root directory, run the following script:
+
+``` 
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once all dependencies are installed, view the application by running:
+```
+npm run develop 
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Technology Stack
+Technologies
+* [React](https://reactjs.org/)
+* [TailWind](https://tailwindcss.com/)
+* [Next.JS](https://nextjs.org/)
+* [NextAuth](https://next-auth.js.org/)
+* [Firebase Database](https://firebase.google.com/)
+* [Recoil](https://recoiljs.org/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Authors
+**[Pangta Huang]()**
 
-## Learn More
+* [Pangta's GitHub](https://github.com/willyhuang18)
+* [Pangta's LinkedIn](https://www.linkedin.com/in/pangta-huang-2b7b0117a/)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+MIT License <br/>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br/>
+Copyright (c) 2022 Pangta Huang, Joshua Meza, Elliot Park, Leslie Patino
