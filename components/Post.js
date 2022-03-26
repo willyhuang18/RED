@@ -8,13 +8,19 @@ import {
     PencilAltIcon,
  } from "@heroicons/react/outline"
  import { BsBoxArrowUpRight } from "react-icons/bs";
- import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid'
+ import { HeartIcon as HeartIconFilled, ChevronDownIcon } from '@heroicons/react/solid'
 import { useSession } from "next-auth/react";
-import { useState,useEffect } from 'react';
+import { useState,useEffect,Fragment } from 'react';
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { Collapse } from 'react-collapse';
+import { Menu, Transition } from '@headlessui/react'
+
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
 
 function Post({id, username, userImg, img, caption}){
     const { data: session } = useSession();
@@ -88,9 +94,127 @@ function Post({id, username, userImg, img, caption}){
                 <div className="flex space-x-4">
                 <p className="bg-blue-500 hover:bg-blue-700 text-white 
                 font-bold py-1 px-2 rounded-full">Follow</p>
-                <DotsHorizontalIcon className="h-5 mt-2 cursor-pointer" />
-                <BsBoxArrowUpRight className="h-5 mt-2 w-5 cursor-pointer "/>
                 </div>
+                <Menu as="div" className="relative inline-block text-left pl-2">
+                <div>
+                    <Menu.Button>
+                    <DotsHorizontalIcon className="h-5 mt-2 cursor-pointer" />
+                    </Menu.Button>
+                </div>
+
+                <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                >
+                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+                    <div className="py-1">
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )}
+                            >
+                            Edit
+                            </a>
+                        )}
+                        </Menu.Item>
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )}
+                            >
+                            Duplicate
+                            </a>
+                        )}
+                        </Menu.Item>
+                    </div>
+                    <div className="py-1">
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )}
+                            >
+                            Archive
+                            </a>
+                        )}
+                        </Menu.Item>
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )}
+                            >
+                            Move
+                            </a>
+                        )}
+                        </Menu.Item>
+                    </div>
+                    <div className="py-1">
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )}
+                            >
+                            Share
+                            </a>
+                        )}
+                        </Menu.Item>
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )}
+                            >
+                            Add to favorites
+                            </a>
+                        )}
+                        </Menu.Item>
+                    </div>
+                    <div className="py-1">
+                        <Menu.Item>
+                        {({ active }) => (
+                            <a
+                            href="#"
+                            className={classNames(
+                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                'block px-4 py-2 text-sm'
+                            )} 
+                            // onClick={() => }
+                            >
+                            Delete
+                            </a>
+                        )}
+                        </Menu.Item>
+                    </div>
+                    </Menu.Items>
+                </Transition>
+                </Menu>
             </div>
         {/* img */}
         <div className=" overflow-x-hidden max-h-[1000px] overflow-y-scroll scrollbar-thumb-black scrollbar-thin" >
