@@ -29,6 +29,8 @@ function Post({id, username, userImg, img, caption}){
     const [likes, setLikes] = useState([]);
     const [hasLiked, setHasLiked] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
+    const [posts, setPosts] = useState([])
+
 
     useEffect(
         () => 
@@ -56,7 +58,8 @@ function Post({id, username, userImg, img, caption}){
         setHasLiked(
             likes.findIndex((like) => (like.id === session?.user?.uid)) !== -1
         ),
-    [likes]
+    [likes],
+
     );
 
     const likePost = async () => {
@@ -68,7 +71,9 @@ function Post({id, username, userImg, img, caption}){
             })
         }
     }
-
+    const deletePost = ()=> {
+        setPosts(deleteDoc(doc(db, 'posts', id)))
+    }
     const sendComment = async (e) => {
         e.preventDefault();
         
@@ -83,7 +88,6 @@ function Post({id, username, userImg, img, caption}){
         })
     }
 
-    console.log(hasLiked);
     return (
         // <Collapse>
         <div className="bg-white my-7 border rounded-lg max-h-[300px] max-w-[500px]" >
@@ -200,12 +204,12 @@ function Post({id, username, userImg, img, caption}){
                         <Menu.Item>
                         {({ active }) => (
                             <a
-                            href="#"
+                            
                             className={classNames(
                                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                 'block px-4 py-2 text-sm'
                             )} 
-                            // onClick={() => }
+                            onClick={() => deletePost(posts.id)}
                             >
                             Delete
                             </a>
