@@ -44,7 +44,7 @@ const Chat = () => {
   };
 
   const translateMessage = async (text, targetLanguage) => {
-    const apiKey = 'AIzaSyAPJbvyDYZYIfVvAHlvt7WcVg0HjYZXYv0';
+    const apiKey = process.env.GOOGLE_API_KEY;
 
     try {
       // Send a request to the translation API
