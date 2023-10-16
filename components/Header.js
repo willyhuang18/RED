@@ -7,6 +7,7 @@ import{
     HeartIcon,
     MenuIcon,
     MapIcon,
+    ChatIcon
 } from "@heroicons/react/outline"
 import { HomeIcon } from "@heroicons/react/solid"
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -58,7 +59,7 @@ function Header(){
                         animate-pulse text-white">10</div>
                         </div>
                         <PlusCircleIcon onClick={() => setOpen(true)} className="navBtn" />
-                        <UserGroupIcon className="navBtn" />
+                        <ChatIcon className="navBtn" onClick={() => router.push('/chat')}/>
                         <HeartIcon className="navBtn" />
 
                         <img 

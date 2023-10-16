@@ -90,7 +90,7 @@ function Post({id, username, userImg, img, caption}){
 
     return (
         // <Collapse>
-        <div className="bg-white my-7 border rounded-lg max-h-[300px] max-w-[500px]" >
+        <div className={`bg-white my-7 border rounded-lg ${ isOpened ?"max-h-[600px]":" max-h-auto"} max-w-[500px]`}>
         {/* header */}
             <div className="flex items-center p-5">
                 <img src={userImg} className="rounded-full h-12 w-12 object-contain border p-1 mr-3" alt="" />
@@ -229,32 +229,32 @@ function Post({id, username, userImg, img, caption}){
             {caption}
             </p>
             <Collapse isOpened={isOpened}>
-        {isOpened && (
-            <>
-            {comments.length > 0 && (
-            <div className="ml-10 h-20 ">
-               {comments.map((comment) => (
-                   <div key={comment.id} 
-                   className="flex items-center space-x-2 mb-3">
-                   <img 
-                   src={comment.data().userImage} 
-                   alt="" 
-                   className="h-7 rounded-full"
-                   />
-                   <p className="text-sm flex-1"><span className="font-bold">{comment.data().username}
-                   </span> {' '}
-                    {comment.data().comment}
-                    </p>
-                    <Moment fromNow className="pr-5 text-xs">
-                        {comment.data().timestamp?.toDate()}
-                    </Moment>
-                   </div>
-               ))} 
-            </div>
+            {isOpened && (
+                <>
+                {comments.length > 0 && (
+                <div className="ml-10 h-20 ">
+                {comments.map((comment) => (
+                    <div key={comment.id} 
+                    className="flex items-center space-x-2 mb-3">
+                    <img 
+                    src={comment.data().userImage} 
+                    alt="" 
+                    className="h-7 rounded-full"
+                    />
+                    <p className="text-sm flex-1"><span className="font-bold">{comment.data().username}
+                    </span> {' '}
+                        {comment.data().comment}
+                        </p>
+                        <Moment fromNow className="pr-5 text-xs">
+                            {comment.data().timestamp?.toDate()}
+                        </Moment>
+                    </div>
+                ))} 
+                </div>
+                )}
+                </>
             )}
-            </>
-        )}
-        </Collapse>
+            </Collapse>
         </div>
         {/* buttons  */}
         {session && (
@@ -270,13 +270,13 @@ function Post({id, username, userImg, img, caption}){
             onChange={ e =>  setComment(e.target.value)}
             />
             <button 
-            className="font-semibold text-blue-400"
+            className="font-semibold text-blue-400 mr-2"
             type="submit"
             disabled={!comment.trim()}
             onClick={sendComment}
             >Post</button>
             </form>
-            <div className="flex space-x-4">
+            <div className="flex space-x-1">
             {
                 hasLiked || likes.length > 0 ? (
                     <>
