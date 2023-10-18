@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { getProviders } from "next-auth/react";
 import {db, storage} from '../firebase'
 import Moment from 'react-moment';
-import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import Header from '../components/Header';
 
 const Chat = () => {
@@ -12,7 +12,20 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [language, setLanguage] = useState('en');
   const { data: session } = useSession();
+  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
+  useEffect(() => {
+    onSnapshot(
+      collection(db, 'users'),
+      (snapshot) => {
+        setUsers(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+      },
+    );
+
+  }, [db]);
+
+  console.log(users);
 
   useEffect(
     () => 
@@ -74,9 +87,11 @@ const Chat = () => {
       {/* Friend contacts */}
       <div className="w-1/4 bg-white rounded-r-xl shadow-md p-6 overflow-auto">
         <h2 className="text-xl font-bold mb-4">Contacts</h2>
-        <div className="mb-4">
-          <p className="font-medium">Friend 1</p>
-        </div>
+        {users.map((user) => (
+          <div key={user.id} className="mb-4" onClick={() => setCurrentUser(user)}>
+            <p className="font-medium">{user.username}</p>
+          </div>
+        ))}
       </div>
 
       {/* Div container with Translate box and Chat box */}
