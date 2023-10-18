@@ -36,29 +36,32 @@ function SignUp() {
   return (
     <>
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14">
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center">
         <img className="w-80" 
         src='https://viceclicks.com/wp-content/uploads/2020/04/pasted-image-0-3.png' 
         alt=""/>
         <p className="font-xs italic text-lg mt-5">This is not a real App, not for commerce use. Thank you</p>
-        <form onSubmit={signUp} className="mt-40">
-          <label>
-            Username:
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-          </label>
-          <label>
-            Email:
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <label>
-            Password:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </label>
-          <button type="submit" className="p-3 bg-blue-500 rounded-lg text-white">
+        <form onSubmit={signUp} className="mt-40 space-y-4">
+          <h2 className="text-xl font-bold mb-4">Create your Account</h2>
+          <div className="space-y-2">
+            <label className="block w-64">
+              Username:
+              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full p-2 mt-1 border border-gray-300 rounded-md" />
+            </label>
+            <label className="block w-64">
+              Email:
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full p-2 mt-1 border border-gray-300 rounded-md" />
+            </label>
+            <label className="block w-64">
+              Password:
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full p-2 mt-1 border border-gray-300 rounded-md" />
+            </label>
+          </div>
+          <button type="submit" className="block w-64 p-2 mt-4 bg-blue-500 text-white rounded-md">
             Sign Up
           </button>
         </form>
-        {error && <p>{error}</p>}
+        {error && <p className="mt-4 text-red-500">{error}</p>}
       </div>
     </>
   );
